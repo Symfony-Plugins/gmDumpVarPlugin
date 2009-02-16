@@ -13,18 +13,18 @@
   <email>keizo[[at]]tbr.t-com.ne.jp</email>
   <active>yes</active>
  </lead>
- <date>2009-02-15</date>
- <time>23:13:56</time>
+ <date>2009-02-16</date>
+ <time>23:41:33</time>
  <version>
-  <release>0.1.0</release>
-  <api>0.1.0</api>
+  <release>1.0.1</release>
+  <api>1.0.1</api>
  </version>
  <stability>
-  <release>alpha</release>
-  <api>alpha</api>
+  <release>stable</release>
+  <api>stable</api>
  </stability>
  <license>MIT License</license>
- <notes>First release</notes>
+ <notes>-</notes>
  <contents>
   <dir baseinstalldir="/gmDumpVarPlugin" name="/">
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="999a25bcc9114fc1f22865b79b1248c5" name="config/filters.yml.sample" role="data" />
@@ -70,6 +70,32 @@
    <date>2009-02-15</date>
    <license>MIT License</license>
    <notes>First release</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-02-16</date>
+   <license>MIT License</license>
+   <notes>stable release</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.1</release>
+    <api>1.0.1</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-02-16</date>
+   <license>MIT License</license>
+   <notes>-</notes>
   </release>
  </changelog>
 </package>
