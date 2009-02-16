@@ -1,0 +1,10 @@
+rendering: ~
+security:  ~
+  
+# insert your own filters here
+display_var:
+  class: GmDumpAssignVarFilter
+
+cache:     ~
+common:    ~
+execution: ~

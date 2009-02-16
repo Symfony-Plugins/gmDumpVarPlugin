@@ -1,0 +1,8 @@
+all:
+  gm_dump_var_plugin:
+    file_dir: ~
+    filename: ~
+    exec_pass: 1919
+    style_outer: ~
+    style_title: ~
+    style_pre: ~

@@ -1,0 +1,3 @@
+config:
+  summary: Display list of vars assigned to view.
+  description: Display list of vars assigned to view, when environment is 'dev' and debug mode is true.

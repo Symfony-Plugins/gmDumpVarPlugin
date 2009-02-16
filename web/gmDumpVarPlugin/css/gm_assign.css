@@ -1,0 +1,36 @@
+p.gm_dump_var_title,
+p#gm_dump_var_open_all,
+div#gm_dump_var_wrapper
+{
+	font-size: 12px;
+}
+
+hr#gm_dump_var_separator_hr
+{
+	width: 100%;
+	clear: both;
+	margin-bottom: 20px;
+}
+
+div#gm_dump_var_wrapper
+{
+	margin: 0px auto;
+	width: 90%;
+}
+
+p#gm_dump_var_open_all
+{
+	padding: 3px 10px 3px 0px;
+	background-color: #676767;
+	color: #FFFFFF;
+	font-weight: bold;
+	cursor: pointer;
+	background-image: url(/gmDumpVarPlugin/images/plus-icon.png);
+	background-repeat: no-repeat;
+	background-position: 2px 2px;
+	width: 100px;
+	margin:0px 0px 0px auto;
+	background-color: #FF8520;
+	border: 1px solid #676767;
+
+}

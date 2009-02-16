@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.7.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+    http://pear.php.net/dtd/tasks-1.0.xsd
+    http://pear.php.net/dtd/package-2.0
+    http://pear.php.net/dtd/package-2.0.xsd">
+ <name>gmDumpVarPlugin</name>
+ <channel>plugins.symfony-project.org</channel>
+ <summary>Display list of vars assigned to view.</summary>
+ <description>Display list of vars assigned to view, when environment is 'dev' and debug mode is true.</description>
+ <lead>
+  <name>Miyata Masamoto</name>
+  <user>Gomo</user>
+  <email>keizo[[at]]tbr.t-com.ne.jp</email>
+  <active>yes</active>
+ </lead>
+ <date>2009-02-15</date>
+ <time>23:13:56</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>alpha</api>
+ </stability>
+ <license>MIT License</license>
+ <notes>First release</notes>
+ <contents>
+  <dir baseinstalldir="/gmDumpVarPlugin" name="/">
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="999a25bcc9114fc1f22865b79b1248c5" name="config/filters.yml.sample" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="cbb53bfd970b9bf200867cde8d9079fe" name="config/settings.yml.sample" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="3e94a66cd0a224e49569a139152a5be9" name="lib/GmDebug.class.php" role="php" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="4c1ebcdee49e6b6fda5b14ba2b600da8" name="lib/GmDumpAssignVarFilter.class.php" role="php" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="ef2b005e70a51b36b51970d58da5a171" name="lib/GmDumpVars.class.php" role="php" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="767d3afb388731a42bb41517061b82f5" name="web/gmDumpVarPlugin/css/gm_assign.css" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="d3ae3d53c831d27e04c4774de0d44a13" name="web/gmDumpVarPlugin/images/check-icon.png" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="2f7297568ccb8a4eed4505d6115a770e" name="web/gmDumpVarPlugin/images/minus-icon.png" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="69df779f0d0592ea1243ac1d817f0b89" name="web/gmDumpVarPlugin/images/plus-icon.png" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="d41d8cd98f00b204e9800998ecf8427e" name="LICENSE" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="bd8718a4b3659ca5b1c24f8feee33cd4" name="README" role="data" />
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   <package>
+    <name>symfony</name>
+    <channel>pear.symfony-project.com</channel>
+    <min>1.1.0</min>
+    <max>1.2.4</max>
+   </package>
+  </required>
+ </dependencies>
+ <phprelease />
+ <changelog>
+  <release>
+   <version>
+    <release>0.1.0</release>
+    <api>0.1.0</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2009-02-15</date>
+   <license>MIT License</license>
+   <notes>First release</notes>
+  </release>
+ </changelog>
+</package>

@@ -1,0 +1,68 @@
+gmDumpVarPlugin
+========
+The gmDumpVarPlugin is a symfony plugin witch display list of vars assigned to view, and dump var easily on screen.
+
+Installation
+
+    symfony plugin:install gmDumpVarPlugin
+    symfony cc
+
+Dump var
+
+    GmDebug::dump($var_name);
+    GmDebug::dump($var_name, 'title');
+
+Dump var and die script
+
+    GmDebug::dumpEnd($var_name);
+    GmDebug::dumpEnd($var_name, 'title');
+
+Dump var to file
+
+    GmDebug::dumpFile($var_name);
+    GmDebug::dumpFile($var_name, 'title');
+
+By default, The file is maked at sf_log_dir/var_dump.log.You can change it.<br />
+If you want to change only file name
+
+    GmDebug::dumpFile($var_name, 'title', 'filename.txt');
+
+change directory too, write in your sf_root/config/settings.yml
+
+    all:
+      gm_dump_var_plugin:
+        file_dir: ~
+        filename: ~
+    
+To dislplay all vars assigned to template, you use filter.<br />
+In your apps/config/filters.yml
+
+    # insert your own filters here
+    display_var:
+      class: GmDumpAssignVarFilter
+
+When your application's environment is 'dev' and debug mode is true, display all vars assigned below your screen.
+
+Enable to execute getter method and display value,<br />
+in your settings.yml
+
+    all:
+      gm_dump_var_plugin:
+        exec_pass: 1234
+
+and add to url
+
+    http://www.example.com/test?exec_pass=1234
+
+All method that name is get~ and is public execute.
+
+All settings is here.
+
+    all:
+      gm_dump_var_plugin:
+        file_dir: ~
+        filename: ~
+        exec_pass: 1919
+        style_outer: ~
+        style_title: ~
+        style_pre: ~
