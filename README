@@ -52,7 +52,7 @@ in your settings.yml
 
 and add to url
 
-    http://www.example.com/test?exec_pass=1234
+    http://www.example.com/test?gm_exec=1234
 
 All method that name is get~ and is public execute.
 
