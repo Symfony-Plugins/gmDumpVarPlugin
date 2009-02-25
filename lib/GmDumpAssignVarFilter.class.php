@@ -16,6 +16,8 @@ class GmDumpAssignVarFilter extends sfFilter
       $this->getContext()->getConfiguration()->isDebug()
       &&
       'dev' == $this->getContext()->getConfiguration()->getEnvironment()
+      &&
+      !$this->getContext()->getRequest()->isXmlHttpRequest()
     );
     
     if($need_display)
