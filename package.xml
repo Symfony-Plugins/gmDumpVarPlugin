@@ -13,31 +13,31 @@
   <email>keizo[[at]]tbr.t-com.ne.jp</email>
   <active>yes</active>
  </lead>
- <date>2009-02-16</date>
- <time>23:41:33</time>
+ <date>2009-02-24</date>
+ <time>17:53:12</time>
  <version>
-  <release>1.0.1</release>
-  <api>1.0.1</api>
+  <release>1.0.5</release>
+  <api>1.0.5</api>
  </version>
  <stability>
   <release>stable</release>
   <api>stable</api>
  </stability>
  <license>MIT License</license>
- <notes>-</notes>
+ <notes>*    Fixed:The filter is unenabled on XmlHttpRequest</notes>
  <contents>
   <dir baseinstalldir="/gmDumpVarPlugin" name="/">
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="999a25bcc9114fc1f22865b79b1248c5" name="config/filters.yml.sample" role="data" />
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="cbb53bfd970b9bf200867cde8d9079fe" name="config/settings.yml.sample" role="data" />
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="3e94a66cd0a224e49569a139152a5be9" name="lib/GmDebug.class.php" role="php" />
-   <file baseinstalldir="/gmDumpVarPlugin" md5sum="4c1ebcdee49e6b6fda5b14ba2b600da8" name="lib/GmDumpAssignVarFilter.class.php" role="php" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="f163f1d6ae457dbd670ac7f451f0534e" name="lib/GmDumpAssignVarFilter.class.php" role="php" />
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="ef2b005e70a51b36b51970d58da5a171" name="lib/GmDumpVars.class.php" role="php" />
-   <file baseinstalldir="/gmDumpVarPlugin" md5sum="767d3afb388731a42bb41517061b82f5" name="web/gmDumpVarPlugin/css/gm_assign.css" role="data" />
-   <file baseinstalldir="/gmDumpVarPlugin" md5sum="d3ae3d53c831d27e04c4774de0d44a13" name="web/gmDumpVarPlugin/images/check-icon.png" role="data" />
-   <file baseinstalldir="/gmDumpVarPlugin" md5sum="2f7297568ccb8a4eed4505d6115a770e" name="web/gmDumpVarPlugin/images/minus-icon.png" role="data" />
-   <file baseinstalldir="/gmDumpVarPlugin" md5sum="69df779f0d0592ea1243ac1d817f0b89" name="web/gmDumpVarPlugin/images/plus-icon.png" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="767d3afb388731a42bb41517061b82f5" name="web/css/gm_assign.css" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="d3ae3d53c831d27e04c4774de0d44a13" name="web/images/check-icon.png" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="2f7297568ccb8a4eed4505d6115a770e" name="web/images/minus-icon.png" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="69df779f0d0592ea1243ac1d817f0b89" name="web/images/plus-icon.png" role="data" />
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="d41d8cd98f00b204e9800998ecf8427e" name="LICENSE" role="data" />
-   <file baseinstalldir="/gmDumpVarPlugin" md5sum="bd8718a4b3659ca5b1c24f8feee33cd4" name="README" role="data" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="e809b78f21b57c5bd278dabcc3be308b" name="README" role="data" />
   </dir>
  </contents>
  <dependencies>
@@ -52,7 +52,8 @@
     <name>symfony</name>
     <channel>pear.symfony-project.com</channel>
     <min>1.1.0</min>
-    <max>1.2.4</max>
+    <max>1.3.0</max>
+    <exclude>1.3.0</exclude>
    </package>
   </required>
  </dependencies>
@@ -96,6 +97,58 @@
    <date>2009-02-16</date>
    <license>MIT License</license>
    <notes>-</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.2</release>
+    <api>1.0.2</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-02-17</date>
+   <license>MIT License</license>
+   <notes>*   Fixed README</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.3</release>
+    <api>1.0.3</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-02-21</date>
+   <license>MIT License</license>
+   <notes>*    Change the symfony package dependency</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.4</release>
+    <api>1.0.4</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-02-21</date>
+   <license>MIT License</license>
+   <notes>*    Fixed:web directory construction.</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.5</release>
+    <api>1.0.5</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-02-24</date>
+   <license>MIT License</license>
+   <notes>*    Fixed:The filter is unenabled on XmlHttpRequest</notes>
   </release>
  </changelog>
 </package>

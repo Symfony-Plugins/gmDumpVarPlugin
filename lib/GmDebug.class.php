@@ -9,6 +9,8 @@
  **/
 class GmDebug
 {
+  private static $is_cli;
+  
   /**
    * 
    * @param mixed $var
@@ -19,7 +21,16 @@ class GmDebug
   public static function dump($var, $title = "", $echo = true)
   {
     $var = self::getBody($var);
-  	$var =  self::decorateHtml($var, $title, $echo);
+    
+    if(self::isCli())
+    {
+      $var =  self::decorateText($var, $title, $echo);
+    }
+    else
+    {
+      $var =  self::decorateHtml($var, $title, $echo);
+    }
+  	
     if($echo)
     {
       echo $var;
@@ -67,6 +78,23 @@ class GmDebug
       fclose($fp);
       chmod($file, 0666);
     }
+  }
+  
+  protected static function isCli()
+  {
+    if(!isset(self::$is_cli))
+    {
+      try
+      {
+        sfContext::getInstance();
+        self::$is_cli = false;
+      }
+      catch(sfException $e)
+      {
+        self::$is_cli = true;
+      }
+    }
+    return self::$is_cli;
   }
   
   /**
@@ -248,12 +276,23 @@ class GmDebug
          $function = $obj->getName();
          $parameters = $obj->getParameters();
          $return['gm_dump_var_func_list']['gm_dump_var_func_name_'.$function]['param'] = self::getFunctionParameter($parameters);
-         $execute = sfContext::getInstance()->getRequest()->getParameter('gm_exec');
+         
+         try
+         {
+           $execute = sfContext::getInstance()->getRequest()->getParameter('gm_exec');
+         }
+         catch(sfException $e)
+         {
+           $execute = false;
+         }
+         
          if(!$execute)
          {
            continue;
          }
+         
          $exec_pass = sfConfig::get('sf_gm_dump_var_plugin_exec_pass');
+         
          if(!$exec_pass)
          {
            continue;
