@@ -86,7 +86,6 @@ class GmDebug
     $return = '<div id="gm_dump_var_outer_'.$title.'" class="gm_dump_var_outer" style="'.self::getStyleOuter().'">';
     $return .= '<p id="gm_dump_var_title_'.$title.'" class="gm_dump_var_title" style="'.self::getStyleTitle().'">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$title.' ['.self::getCurrentTime().']&nbsp;&nbsp;&nbsp;</p>';
     
-    //echo = trueの時はデフォルトで開いた状態で出力。title属性を付与しそれをjavascriptでチェックしています。
     $title_att = $echo ? ' title="'.$title.'"' : '';
     $return .= '<pre class="gm_dump_var_pre" id="gm_dump_var_pre_'.$title.'"'.$title_att.' style="'.self::getStylePre().'">'.$body.'</pre>';
     
