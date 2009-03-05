@@ -13,23 +13,23 @@
   <email>keizo[[at]]tbr.t-com.ne.jp</email>
   <active>yes</active>
  </lead>
- <date>2009-02-24</date>
- <time>17:53:12</time>
+ <date>2009-03-05</date>
+ <time>12:28:51</time>
  <version>
-  <release>1.0.5</release>
-  <api>1.0.5</api>
+  <release>1.0.8</release>
+  <api>1.0.8</api>
  </version>
  <stability>
   <release>stable</release>
   <api>stable</api>
  </stability>
  <license>MIT License</license>
- <notes>*    Fixed:The filter is unenabled on XmlHttpRequest</notes>
+ <notes>*    Fixed:GmDebug hadn't been able to use before request class was constructed.</notes>
  <contents>
   <dir baseinstalldir="/gmDumpVarPlugin" name="/">
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="999a25bcc9114fc1f22865b79b1248c5" name="config/filters.yml.sample" role="data" />
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="cbb53bfd970b9bf200867cde8d9079fe" name="config/settings.yml.sample" role="data" />
-   <file baseinstalldir="/gmDumpVarPlugin" md5sum="3e94a66cd0a224e49569a139152a5be9" name="lib/GmDebug.class.php" role="php" />
+   <file baseinstalldir="/gmDumpVarPlugin" md5sum="ebdcb950a44d82cc3230c4a9928d94a0" name="lib/GmDebug.class.php" role="php" />
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="f163f1d6ae457dbd670ac7f451f0534e" name="lib/GmDumpAssignVarFilter.class.php" role="php" />
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="ef2b005e70a51b36b51970d58da5a171" name="lib/GmDumpVars.class.php" role="php" />
    <file baseinstalldir="/gmDumpVarPlugin" md5sum="767d3afb388731a42bb41517061b82f5" name="web/css/gm_assign.css" role="data" />
@@ -149,6 +149,45 @@
    <date>2009-02-24</date>
    <license>MIT License</license>
    <notes>*    Fixed:The filter is unenabled on XmlHttpRequest</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.6</release>
+    <api>1.0.6</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-02-26</date>
+   <license>MIT License</license>
+   <notes>The GmDebug optimize for cli mode</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.7</release>
+    <api>1.0.7</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-02-26</date>
+   <license>MIT License</license>
+   <notes>*    The GmDebug optimize for cli mode</notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.8</release>
+    <api>1.0.8</api>
+   </version>
+   <stability>
+    <release>stable</release>
+    <api>stable</api>
+   </stability>
+   <date>2009-03-05</date>
+   <license>MIT License</license>
+   <notes>*    Fixed:GmDebug hadn't been able to use before request class was constructed.</notes>
   </release>
  </changelog>
 </package>

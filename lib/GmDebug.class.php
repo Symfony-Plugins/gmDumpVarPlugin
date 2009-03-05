@@ -279,7 +279,14 @@ class GmDebug
          
          try
          {
-           $execute = sfContext::getInstance()->getRequest()->getParameter('gm_exec');
+           if(!sfContext::getInstance()->getRequest())
+           {
+             $execute = false;
+           }
+           else
+           {
+             $execute = sfContext::getInstance()->getRequest()->getParameter('gm_exec');
+           }
          }
          catch(sfException $e)
          {
@@ -297,6 +304,7 @@ class GmDebug
          {
            continue;
          }
+         
          if($execute == $exec_pass && strpos($function,'get') === 0 && empty($parameters))
          {
            $return['gm_dump_var_func_list']['gm_dump_var_func_name_'.$function]['return'] = self::executeMethod($var, $function);
