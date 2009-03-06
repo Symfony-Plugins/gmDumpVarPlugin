@@ -56,6 +56,12 @@ and add to url
 
 All method that name is get~ and is public execute.
 
+    all:
+      gm_dump_var_plugin:
+        execute_sf_pager: on
+
+Display inceluded object in sfPager.If you enable to this option, send SELECT query agein once.
+
 All settings is here.
 
     all:
@@ -66,3 +72,4 @@ All settings is here.
         style_outer: ~
         style_title: ~
         style_pre: ~
+        execute_sf_pager: off

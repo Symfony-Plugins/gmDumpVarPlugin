@@ -11,6 +11,24 @@ class GmDebug
 {
   private static $is_cli;
   
+  private static $patterns = array(
+    '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) ""\n +\["return"\]=>\n +string\([0-9]+\) "([^"]+)"\n +}/',
+    '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) ""\n +\["return"\]=>\n +([a-z]+\([^)]+\))\n +}/',
+    '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) ""\n +}/',
+    '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) "([^"]+)"\n +}/',
+    '/\["gm_dump_var_func_list"\]=>\n +array\([0-9]+\) {/',
+    '/array\([23]\) {\n +\["gm_dump_var_class"\]=>\n +string\([0-9]+\) "([^"]+)"/',
+  );
+  
+  private static $replacements = array(
+    '$1() $2',
+    '$1() $2',
+    '$1()',
+    '$1( $2 )',
+    'function {',
+    'Object : class $1',
+  );
+  
   /**
    * 
    * @param mixed $var
@@ -157,39 +175,7 @@ class GmDebug
     var_dump($var);
     $output = ob_get_clean();
     
-    return preg_replace(self::getReplacePattern(), self::getReplaceReplacement(), $output);
-  }
-  
-  /**
-   * @return array regex pattern for preg_replace.
-   */
-  protected static function getReplacePattern()
-  {
-    return array(
-  	  '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) ""\n +\["return"\]=>\n +string\([0-9]+\) "([^"]+)"\n +}/',
-  	  '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) ""\n +\["return"\]=>\n +([a-z]+\([^)]+\))\n +}/',
-      '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) ""\n +}/',
-  	  '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) "([^"]+)"\n +}/',
-      '/\["gm_dump_var_func_list"\]=>\n +array\([0-9]+\) {/',
-      '/array\([23]\) {\n +\["gm_dump_var_class"\]=>\n +string\([0-9]+\) "([^"]+)"/',
-      '/\["gm_dump_var_pager"\]=>/'
-    );
-  }
-  
-  /**
-   * @return array regex replacement for preg_replace.
-   */
-  protected static function getReplaceReplacement()
-  {
-    return array(
-      '$1() $2',
-      '$1() $2',
-      '$1()',
-      '$1( $2 )',
-      'function {',
-      'Object : class $1',
-      'Included object:'
-    );
+    return preg_replace(self::$patterns, self::$replacements, $output);
   }
   
   /**
@@ -328,17 +314,9 @@ class GmDebug
        }
     }
     
-    if($class->isSubclassOf(new ReflectionClass('sfPager')))
+    if(sfConfig::get('sf_gm_dump_var_plugin_execute_sf_pager', false))
     {
-      if($var->haveToPaginate())
-      {
-        $object = $var->getObjectByCursor(1);
-        $return['gm_dump_var_pager'] = self::getObject($object);
-      }
-      else
-      {
-        $return['gm_dump_var_pager'] = null;
-      }
+      self::executePager($class, $var, $return);
     }
     
     self::OptionallyAction($class, $var, $return);
@@ -347,25 +325,37 @@ class GmDebug
     return $return;
   }
   
+
+  protected static function OptionallyAction(ReflectionClass $class, $object, &$display_var)
+  {
+    
+  }
+  
   /**
    * @var ReflectionClass $class
    * @var object $object
    * @var &string $display_var
    */
-  protected static function OptionallyAction(ReflectionClass $class, $object, &$display_var)
+  protected static function executePager(ReflectionClass $class, $object, &$display_var)
   {
     if($class->isSubclassOf(new ReflectionClass('sfPager')))
     {
-      if($object->haveToPaginate())
+      if($instance = $object->getObjectByCursor(1))
       {
-        $instance = $object->getObjectByCursor(1);
         $display_var['gm_dump_var_pager'] = self::getObject($instance);
       }
       else
       {
         $display_var['gm_dump_var_pager'] = null;
       }
+      self::addReplacePattern('/\["gm_dump_var_pager"\]=>/', 'Included object:');
     }
+  }
+  
+  protected static function addReplacePattern($pattern, $replacement)
+  {
+    array_push(self::$patterns, $pattern);
+    array_push(self::$replacements, $replacement);
   }
   
   /**

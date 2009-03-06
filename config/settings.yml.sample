@@ -6,3 +6,4 @@ all:
     style_outer: ~
     style_title: ~
     style_pre: ~
+    execute_sf_pager: off # notice:This option send select query to database again.
