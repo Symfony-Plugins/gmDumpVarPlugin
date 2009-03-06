@@ -153,27 +153,43 @@ class GmDebug
   protected static function getBody(&$var)
   {
     self::analyzeVar($var);
-  	$pattern = array(
+    ob_start();
+    var_dump($var);
+    $output = ob_get_clean();
+    
+    return preg_replace(self::getReplacePattern(), self::getReplaceReplacement(), $output);
+  }
+  
+  /**
+   * @return array regex pattern for preg_replace.
+   */
+  protected static function getReplacePattern()
+  {
+    return array(
   	  '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) ""\n +\["return"\]=>\n +string\([0-9]+\) "([^"]+)"\n +}/',
   	  '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) ""\n +\["return"\]=>\n +([a-z]+\([^)]+\))\n +}/',
       '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) ""\n +}/',
   	  '/\["gm_dump_var_func_name_([^"]+)"\]=>\n +array\([0-9]+\) {\n +\["param"\]=>\n +string\([0-9]+\) "([^"]+)"\n +}/',
       '/\["gm_dump_var_func_list"\]=>\n +array\([0-9]+\) {/',
-      '/array\(2\) {\n +\["gm_dump_var_class"\]=>\n +string\([0-9]+\) "([^"]+)"/'
+      '/array\([23]\) {\n +\["gm_dump_var_class"\]=>\n +string\([0-9]+\) "([^"]+)"/',
+      '/\["gm_dump_var_pager"\]=>/'
     );
-    $replace = array(
+  }
+  
+  /**
+   * @return array regex replacement for preg_replace.
+   */
+  protected static function getReplaceReplacement()
+  {
+    return array(
       '$1() $2',
       '$1() $2',
       '$1()',
       '$1( $2 )',
       'function {',
       'Object : class $1',
+      'Included object:'
     );
-    ob_start();
-    var_dump($var);
-    $output = ob_get_clean();
-    
-    return preg_replace($pattern, $replace, $output);
   }
   
   /**
@@ -311,8 +327,45 @@ class GmDebug
          }
        }
     }
+    
+    if($class->isSubclassOf(new ReflectionClass('sfPager')))
+    {
+      if($var->haveToPaginate())
+      {
+        $object = $var->getObjectByCursor(1);
+        $return['gm_dump_var_pager'] = self::getObject($object);
+      }
+      else
+      {
+        $return['gm_dump_var_pager'] = null;
+      }
+    }
+    
+    self::OptionallyAction($class, $var, $return);
+    
     ksort($return['gm_dump_var_func_list']);
     return $return;
+  }
+  
+  /**
+   * @var ReflectionClass $class
+   * @var object $object
+   * @var &string $display_var
+   */
+  protected static function OptionallyAction(ReflectionClass $class, $object, &$display_var)
+  {
+    if($class->isSubclassOf(new ReflectionClass('sfPager')))
+    {
+      if($object->haveToPaginate())
+      {
+        $instance = $object->getObjectByCursor(1);
+        $display_var['gm_dump_var_pager'] = self::getObject($instance);
+      }
+      else
+      {
+        $display_var['gm_dump_var_pager'] = null;
+      }
+    }
   }
   
   /**
@@ -321,11 +374,11 @@ class GmDebug
    * @param string $function
    * @return mixed
    */
-  protected static function executeMethod($object, $function)
+  protected static function executeMethod($object, $function, $arg = null)
   {
     try
     {
-      $value = $object->$function();
+      $value = $object->$function($arg);
     }
     catch(Exception $e)
     {
